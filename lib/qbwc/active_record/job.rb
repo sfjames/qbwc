@@ -1,7 +1,7 @@
 class QBWC::ActiveRecord::Job < QBWC::Job
   class QbwcJob < ActiveRecord::Base
     validates :name, :uniqueness => true, :presence => true
-    serialize :requests, JSON
+    serialize :requests, Array
     serialize :data
 
     def to_qbwc_job
@@ -61,7 +61,7 @@ class QBWC::ActiveRecord::Job < QBWC::Job
   end
 
   def requests=(r)
-    find_ar_job.update_all(:requests => r)
+    find_ar_job.update_all(:requests => r.to_yaml)
     super
   end
 
