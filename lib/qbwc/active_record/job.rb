@@ -1,7 +1,7 @@
 class QBWC::ActiveRecord::Job < QBWC::Job
   class QbwcJob < ActiveRecord::Base
     validates :name, :uniqueness => true, :presence => true
-    serialize :requests, Array
+    serialize :requests
     serialize :data
 
     def to_qbwc_job
